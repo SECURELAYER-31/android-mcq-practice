@@ -287,19 +287,31 @@ let resultEl = document.getElementById("result");
 let numberEl = document.getElementById("number");
 let nextBtn = document.getElementById("nextBtn");
 
+let selectedAnswer = null;
+
 function loadQuestion() {
   let q = questions[current];
   numberEl.innerText = "Question " + (current + 1) + " of " + questions.length;
   questionEl.innerText = q.question;
   optionsEl.innerHTML = "";
   resultEl.innerText = "";
+  selectedAnswer = null;
 
   q.options.forEach(function(option) {
     let btn = document.createElement("button");
     btn.innerText = option;
+
     btn.onclick = function() {
-      checkAnswer(btn, option, q.answer);
+      let buttons = optionsEl.getElementsByTagName("button");
+
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].style.background = "";
+      }
+
+      btn.style.background = "#ffd54f";
+      selectedAnswer = option;
     };
+
     optionsEl.appendChild(btn);
   });
 }
@@ -322,16 +334,45 @@ function checkAnswer(button, selected, correct) {
 }
 
 nextBtn.onclick = function() {
-  current++;
-  if (current < questions.length) {
-    loadQuestion();
-  } else {
-    questionEl.innerText = "Practice Finished 🎯";
-    optionsEl.innerHTML = "";
-    numberEl.innerText = "";
-    resultEl.innerText = "Done";
-    nextBtn.style.display = "none";
+  let q = questions[current];
+
+  if (selectedAnswer === null) {
+    resultEl.innerText = "Select an option first!";
+    return;
   }
+
+  let buttons = optionsEl.getElementsByTagName("button");
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+
+    if (buttons[i].innerText === q.answer) {
+      buttons[i].classList.add("correct");
+    }
+
+    if (buttons[i].innerText === selectedAnswer && selectedAnswer !== q.answer) {
+      buttons[i].classList.add("wrong");
+    }
+  }
+
+  if (selectedAnswer === q.answer) {
+    resultEl.innerText = "Correct";
+  } else {
+    resultEl.innerText = "Wrong";
+  }
+
+  setTimeout(() => {
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      questionEl.innerText = "Finished 🎯";
+      optionsEl.innerHTML = "";
+      numberEl.innerText = "";
+      resultEl.innerText = "Test completed";
+      nextBtn.style.display = "none";
+    }
+  }, 1000);
 };
 
 loadQuestion();
