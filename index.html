@@ -56,31 +56,156 @@
 
 <script>
 let questions = [
-  {
-    question: "What is an Activity in Android?",
-    options: ["A database", "A single screen in an app", "A file manager", "A network tool"],
-    answer: "A single screen in an app"
-  },
-  {
-    question: "What is Intent in Android?",
-    options: ["A database", "A messaging object", "A layout", "A file"],
-    answer: "A messaging object"
-  },
-  {
-    question: "Which file contains app configuration details?",
-    options: ["MainActivity.java", "AndroidManifest.xml", "strings.xml", "styles.xml"],
-    answer: "AndroidManifest.xml"
-  },
-  {
-    question: "Which component handles background tasks in Android?",
-    options: ["Activity", "Service", "Fragment", "View"],
-    answer: "Service"
-  },
-  {
-    question: "What is a Toast message?",
-    options: ["A short message displayed on screen", "A database", "A layout", "A button"],
-    answer: "A short message displayed on screen"
-  }
+{
+  question: "You created an app, but when you click a button, nothing happens. You forgot to link the button with code. What is missing?",
+  options: ["Intent", "OnClickListener", "Fragment", "Service"],
+  answer: "OnClickListener"
+},
+{
+  question: "An app crashes immediately after launch due to a missing permission for internet. Where should you declare it?",
+  options: ["activity_main.xml", "build.gradle", "AndroidManifest.xml", "strings.xml"],
+  answer: "AndroidManifest.xml"
+},
+{
+  question: "You want to pass data from one Activity to another. What should you use?",
+  options: ["Fragment", "Intent", "Service", "View"],
+  answer: "Intent"
+},
+{
+  question: "Your app freezes when performing a long operation on the main thread. What is the issue?",
+  options: ["Memory leak", "ANR", "Syntax error", "API error"],
+  answer: "ANR"
+},
+{
+  question: "You want to display a list of 1000 items efficiently. What should you use?",
+  options: ["TextView", "LinearLayout", "RecyclerView", "ScrollView"],
+  answer: "RecyclerView"
+},
+{
+  question: "Your app needs to run music in the background even after the app is closed. Which component should be used?",
+  options: ["Activity", "Fragment", "Service", "Intent"],
+  answer: "Service"
+},
+{
+  question: "You want to show a short popup message when a user clicks a button. What should you use?",
+  options: ["AlertDialog", "Toast", "Notification", "Snackbar"],
+  answer: "Toast"
+},
+{
+  question: "You need to store structured data locally in your app. What is the best option?",
+  options: ["SharedPreferences", "SQLite", "Intent", "Service"],
+  answer: "SQLite"
+},
+{
+  question: "You want your UI to adapt to different screen sizes using constraints. Which layout is best?",
+  options: ["LinearLayout", "FrameLayout", "ConstraintLayout", "TableLayout"],
+  answer: "ConstraintLayout"
+},
+{
+  question: "You want to update UI automatically when data changes. Which component helps?",
+  options: ["View", "LiveData", "Intent", "Service"],
+  answer: "LiveData"
+},
+{
+  question: "Your app should respond when the device battery is low. Which component should you use?",
+  options: ["Activity", "Broadcast Receiver", "Service", "Fragment"],
+  answer: "Broadcast Receiver"
+},
+{
+  question: "You want to connect your app to a REST API. Which library is commonly used?",
+  options: ["Glide", "Retrofit", "Room", "Picasso"],
+  answer: "Retrofit"
+},
+{
+  question: "You want to design UI without writing XML. Which modern toolkit should you use?",
+  options: ["Jetpack Compose", "RecyclerView", "ConstraintLayout", "Fragment"],
+  answer: "Jetpack Compose"
+},
+{
+  question: "An app needs to save small key-value pairs like login status. What should be used?",
+  options: ["SQLite", "SharedPreferences", "Room", "Intent"],
+  answer: "SharedPreferences"
+},
+{
+  question: "Your app crashes due to null reference when accessing a view. What is the issue?",
+  options: ["Memory leak", "NullPointerException", "ANR", "API error"],
+  answer: "NullPointerException"
+},
+{
+  question: "You want to reuse a UI component in multiple activities. What should you use?",
+  options: ["Service", "Fragment", "Intent", "BroadcastReceiver"],
+  answer: "Fragment"
+},
+{
+  question: "Your app needs to load images from the internet efficiently. Which library can help?",
+  options: ["Retrofit", "Glide", "Room", "LiveData"],
+  answer: "Glide"
+},
+{
+  question: "You want navigation between screens with back stack support. What should you use?",
+  options: ["Intent only", "Navigation Component", "FragmentManager", "Service"],
+  answer: "Navigation Component"
+},
+{
+  question: "You need to perform background work without blocking UI. What should you use?",
+  options: ["Activity", "Main thread", "AsyncTask / Coroutine", "Layout"],
+  answer: "AsyncTask / Coroutine"
+},
+{
+  question: "You want to debug your app and see logs. Which tool will you use in Android Studio?",
+  options: ["Emulator", "Logcat", "Gradle", "ADB"],
+  answer: "Logcat"
+},
+{
+  question: "Your app must access the camera. What is required first?",
+  options: ["Layout file", "Permission in Manifest", "Intent", "Service"],
+  answer: "Permission in Manifest"
+},
+{
+  question: "You want to display a dialog box asking user confirmation. What should you use?",
+  options: ["Toast", "AlertDialog", "Intent", "Service"],
+  answer: "AlertDialog"
+},
+{
+  question: "Your app UI overlaps elements accidentally. Which layout may cause this?",
+  options: ["LinearLayout", "FrameLayout", "ConstraintLayout", "GridLayout"],
+  answer: "FrameLayout"
+},
+{
+  question: "You want to bind UI components safely without findViewById(). What should you use?",
+  options: ["ViewBinding", "Intent", "Service", "Fragment"],
+  answer: "ViewBinding"
+},
+{
+  question: "You want your app to work offline and sync later. Which approach is best?",
+  options: ["Only API calls", "Local DB + Sync", "Only UI", "Intent"],
+  answer: "Local DB + Sync"
+},
+{
+  question: "Your app crashes due to heavy memory usage. What is the issue?",
+  options: ["ANR", "Memory leak", "Syntax error", "Intent error"],
+  answer: "Memory leak"
+},
+{
+  question: "You want to schedule a task even if app is closed. What should you use?",
+  options: ["Activity", "Service", "WorkManager", "Fragment"],
+  answer: "WorkManager"
+},
+{
+  question: "User rotates the screen and data is lost. What should be used?",
+  options: ["Intent", "ViewModel", "Service", "Layout"],
+  answer: "ViewModel"
+},
+{
+  question: "You want to show temporary message with action button. What should you use?",
+  options: ["Toast", "Snackbar", "Dialog", "Notification"],
+  answer: "Snackbar"
+},
+{
+  question: "You want to test app on different devices without real phones. What should you use?",
+  options: ["SDK", "Emulator", "APK", "Gradle"],
+  answer: "Emulator"
+}
 ];
 
 let current = 0;
