@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Android MCQ Practice</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .box {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h2 {
+      font-size: 22px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #nextBtn {
+      background: blue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .correct {
+      background: lightgreen;
+    }
+    .wrong {
+      background: lightcoral;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Android MCQ Practice</h1>
+  <p id="number"></p>
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <p id="result"></p>
+  <button id="nextBtn">Next</button>
+</div>
+
+<script>
+let questions = [
+  {
+    question: "What is an Activity in Android?",
+    options: ["A database", "A single screen in an app", "A file manager", "A network tool"],
+    answer: "A single screen in an app"
+  },
+  {
+    question: "What is Intent in Android?",
+    options: ["A database", "A messaging object", "A layout", "A file"],
+    answer: "A messaging object"
+  },
+  {
+    question: "Which file contains app configuration details?",
+    options: ["MainActivity.java", "AndroidManifest.xml", "strings.xml", "styles.xml"],
+    answer: "AndroidManifest.xml"
+  },
+  {
+    question: "Which component handles background tasks in Android?",
+    options: ["Activity", "Service", "Fragment", "View"],
+    answer: "Service"
+  },
+  {
+    question: "What is a Toast message?",
+    options: ["A short message displayed on screen", "A database", "A layout", "A button"],
+    answer: "A short message displayed on screen"
+  }
+];
+
+let current = 0;
+let questionEl = document.getElementById("question");
+let optionsEl = document.getElementById("options");
+let resultEl = document.getElementById("result");
+let numberEl = document.getElementById("number");
+let nextBtn = document.getElementById("nextBtn");
+
+function loadQuestion() {
+  let q = questions[current];
+  numberEl.innerText = "Question " + (current + 1) + " of " + questions.length;
+  questionEl.innerText = q.question;
+  optionsEl.innerHTML = "";
+  resultEl.innerText = "";
+
+  q.options.forEach(function(option) {
+    let btn = document.createElement("button");
+    btn.innerText = option;
+    btn.onclick = function() {
+      checkAnswer(btn, option, q.answer);
+    };
+    optionsEl.appendChild(btn);
+  });
+}
+
+function checkAnswer(button, selected, correct) {
+  let buttons = optionsEl.getElementsByTagName("button");
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+    if (buttons[i].innerText === correct) {
+      buttons[i].classList.add("correct");
+    }
+  }
+
+  if (selected === correct) {
+    resultEl.innerText = "Correct";
+  } else {
+    button.classList.add("wrong");
+    resultEl.innerText = "Wrong";
+  }
+}
+
+nextBtn.onclick = function() {
+  current++;
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    questionEl.innerText = "Practice Finished 🎯";
+    optionsEl.innerHTML = "";
+    numberEl.innerText = "";
+    resultEl.innerText = "Done";
+    nextBtn.style.display = "none";
+  }
+};
+
+loadQuestion();
+</script>
+
+</body>
+</html>
