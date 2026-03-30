@@ -115,6 +115,14 @@
 </div>
 
 <script>
+  let colors = [
+  "#667eea",
+  "#ff6a00",
+  "#00c9ff",
+  "#ff4e50",
+  "#1de9b6",
+  "#f7971e"
+];
 let questions = [
 {
   question: "You created an app, but when you click a button, nothing happens. You forgot to link the button with code. What is missing?",
@@ -276,6 +284,7 @@ let numberEl = document.getElementById("number");
 
 function loadQuestion() {
   let q = questions[current];
+  document.body.style.background = colors[current % colors.length];
   numberEl.innerText = "Question " + (current + 1) + " of " + questions.length;
   questionEl.innerText = q.question;
   optionsEl.innerHTML = "";
